@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sayang!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleus.css">
+    <link rel="shortcut icon" href="img/pic8.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <div class="main-container" id="mainContainer">
+
+    </div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContainer = document.getElementById('mainContainer');
+            const textToSpawn = "Happy Birthday Ratu!";
+            
+     const photoURLs = [
+    'image/us1.jpg',
+    'image/us2.jpg',
+    'image/us3.jpg',
+    'image/us4.jpg',
+    'image/us5.jpg',
+    'image/ua6.jpg',
+    'image/us7.jpg',
+    'image/us8.jpg',
+    'image/us9.jpg',
+    'image/us10.jpg',
+    'image/us11.jpg',
+    'image/us12.jpg',
+    'image/us13.jpg',
+    'image/jhsfinal.jpg',
+];
+
+
+            function spawnPhoto() {
+                const photoEl = document.createElement('img');
+                photoEl.classList.add('spawn-photo');
+                
+                const randomPhotoSrc = photoURLs[Math.floor(Math.random() * photoURLs.length)];
+                photoEl.src = randomPhotoSrc;
+
+                const randomX = Math.random() * (mainContainer.clientWidth - 150);
+                photoEl.style.left = `${randomX}px`;
+                photoEl.style.top = `${window.innerHeight}px`;
+
+                mainContainer.appendChild(photoEl);
+
+                setTimeout(() => {
+                    photoEl.remove();
+                }, 15000);
+            }
+
+            function spawnText() {
+                const textEl = document.createElement('div');
+                textEl.classList.add('spawn-text');
+                textEl.innerText = textToSpawn;
+
+                const randomX = Math.random() * mainContainer.clientWidth;
+                const randomY = Math.random() * mainContainer.clientHeight;
+
+                textEl.style.left = `${randomX}px`;
+                textEl.style.top = `${randomY}px`;
+                
+                mainContainer.appendChild(textEl);
+
+                setTimeout(() => {
+                    textEl.remove();
+                }, 4000);
+            }
+
+            function createGlitter() {
+                const glitterEl = document.createElement('div');
+                glitterEl.classList.add('glitter');
+
+                const randomX = Math.random() * window.innerWidth;
+                const randomDuration = Math.random() * 3 + 2;
+                const randomDelay = Math.random() * 2;
+
+                glitterEl.style.left = `${randomX}px`;
+                glitterEl.style.animationDuration = `${randomDuration}s`;
+                glitterEl.style.animationDelay = `${randomDelay}s`;
+                
+                mainContainer.appendChild(glitterEl);
+
+                glitterEl.addEventListener('animationend', () => {
+                    glitterEl.remove();
+                });
+            }
+
+            setInterval(spawnPhoto, 1200);
+            setInterval(spawnText, 200);
+            setInterval(createGlitter, 100);
+        });
+    </script>
+</body>
+</html>
